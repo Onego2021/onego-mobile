@@ -31,14 +31,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/flashBtn"
+            android:id="@+id/spinBtn"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="start"
             android:layout_margin="12dp"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:background="@drawable/flash"
+            android:background="@drawable/pinkspin"
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
