@@ -1,42 +1,25 @@
 package kobot.board.onego.activity
 
-import android.Manifest
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.ImageFormat
 import android.graphics.Matrix
-import android.graphics.drawable.Drawable
 import android.hardware.Camera
-import android.hardware.Sensor
-import android.hardware.SensorManager
 import android.hardware.camera2.*
 import android.media.ExifInterface
-import android.media.ImageReader
 import android.net.Uri
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
-import android.util.DisplayMetrics
-import android.util.Log
-import android.util.SparseIntArray
-import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.view.WindowManager
-import android.widget.CheckBox
 import android.widget.FrameLayout
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import kobot.board.onego.R
 import kobot.board.onego.util.CameraPreview
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.Collections.rotate
 
 class CameraActivity : AppCompatActivity() {
 
@@ -52,12 +35,13 @@ class CameraActivity : AppCompatActivity() {
     lateinit var shutterBtn : ImageButton
     lateinit var cameraPreview : SurfaceView
     lateinit var camera_frameLayout : FrameLayout
-    var flashBtnSwitch = 0
+    var currentCameraID : Int = 0
     var stream = ByteArrayOutputStream()
 
     private fun setupCamera(){
         if(mCamera == null){
-            mCamera = Camera.open()
+            currentCameraID = CameraCharacteristics.LENS_FACING_FRONT
+            mCamera = Camera.open(currentCameraID)
         }
         cameraPreview = CameraPreview(this, mCamera!!)
         camera_frameLayout.addView(cameraPreview)
@@ -74,6 +58,17 @@ class CameraActivity : AppCompatActivity() {
         shutterBtn = findViewById(R.id.shutterBtn)
 
         setupCamera()
+        currentCameraID = Camera.CameraInfo.CAMERA_FACING_BACK
+        spinBtn.setOnClickListener {
+            if(currentCameraID.equals(Camera.CameraInfo.CAMERA_FACING_BACK)){
+                currentCameraID = Camera.CameraInfo.CAMERA_FACING_FRONT
+                setupCamera()
+            }else{
+                currentCameraID = Camera.CameraInfo.CAMERA_FACING_BACK
+                setupCamera()
+            }
+        }
+
 
         // hide status bar
         window.setFlags(

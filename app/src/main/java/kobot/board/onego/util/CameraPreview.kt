@@ -9,7 +9,7 @@ import android.widget.Toast
 import java.io.IOError
 import java.io.IOException
 
-class CameraPreview(context: Context, private val mCamera:Camera) : SurfaceView(context), SurfaceHolder.Callback {
+class CameraPreview(context: Context, private val mCamera: Camera) : SurfaceView(context), SurfaceHolder.Callback {
     private val mHolder : SurfaceHolder = this.holder.apply {
         addCallback(this@CameraPreview)
         setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS)

@@ -1,0 +1,47 @@
+[33mcommit 204ec264e5d1894c49016fd144894b049d681caf[m[33m ([m[1;36mHEAD -> [m[1;32mandroid/cameraManager[m[33m)[m
+Author: bamin0422 <bamin0422@gmail.com>
+Date:   Sat Aug 28 21:15:26 2021 +0900
+
+    Add filefix
+
+[33mcommit e7478541a273a09de2e8dc9807d75b74874ee808[m[33m ([m[1;31morigin/android/cameraManager[m[33m)[m
+Author: bamin0422 <bamin0422@gmail.com>
+Date:   Sun Aug 1 03:24:47 2021 +0900
+
+    Add Camera function
+
+[33mcommit 3edee2b2c90f92c7c5889b54751109b7a3ec508a[m
+Author: bamin0422 <bamin0422@gmail.com>
+Date:   Sun Aug 1 01:09:19 2021 +0900
+
+    Add font
+
+[33mcommit 108d59c2f631b709a510833ced1488a71974723a[m
+Author: bamin0422 <bamin0422@gmail.com>
+Date:   Sat Jul 31 21:45:42 2021 +0900
+
+    Add permission of camera
+
+[33mcommit 340083be6568977052c16b97f5afaa186c8cea24[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/develop[m[33m, [m[1;32mmaster[m[33m, [m[1;32mdevelop[m[33m, [m[1;32mandroid/filePicker[m[33m)[m
+Author: bamin0422 <bamin0422@gmail.com>
+Date:   Fri Jul 30 01:27:51 2021 +0900
+
+    Add README.md
+
+[33mcommit 93bd76c51fa4384a459bf54dbb08dca4689b5b4d[m
+Author: bamin0422 <bamin0422@gmail.com>
+Date:   Fri Jul 30 01:26:50 2021 +0900
+
+    Add README.md
+
+[33mcommit 42f8af44ee426eb5b8617527fd77eac387fa7a47[m
+Author: bamin0422 <bamin0422@gmail.com>
+Date:   Fri Jul 30 01:21:07 2021 +0900
+
+    Add UI
+
+[33mcommit 102d9049a82c7b8b1731b72818be5d56eb427c54[m
+Author: bamin0422 <bamin0422@gmail.com>
+Date:   Tue Jul 27 18:42:43 2021 +0900
+
+    Add Project files
