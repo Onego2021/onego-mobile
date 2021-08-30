@@ -32,6 +32,12 @@ class AfterActivity : AppCompatActivity() {
     lateinit var homeLoader : Button
     lateinit var carouselView : CarouselView
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_after)

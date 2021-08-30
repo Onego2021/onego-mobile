@@ -24,11 +24,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="One Go"
             android:textColor="#474747"
-            android:textSize="24dp"
+            android:textSize="28dp"
             app:layout_constraintBottom_toBottomOf="@+id/onego_app_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="48dp"
         android:text="다운로드"
         android:textColor="#000"
         android:textSize="24dp"
