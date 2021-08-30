@@ -32,12 +32,17 @@ class MainActivity : AppCompatActivity() {
         fileRecyclerView = findViewById(R.id.fileListView)
 
         cameraBtn.setOnClickListener {
-            startActivity(Intent(this, CameraActivity::class.java))
+            val intent = Intent(this, ImageActivity::class.java)
+            intent.putExtra("status", "CAMERA")
+            startActivity(intent)
             finish()
         }
 
         galleryBtn.setOnClickListener {
-            Toast.makeText(this, "갤러리 버튼이 클릭되었습니다.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ImageActivity::class.java)
+            intent.putExtra("status", "GALLERY")
+            startActivity(intent)
+            finish()
         }
     }
 
