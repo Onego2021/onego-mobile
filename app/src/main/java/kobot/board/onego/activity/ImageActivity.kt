@@ -25,6 +25,9 @@ import androidx.core.content.FileProvider
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kobot.board.onego.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import java.io.*
 import java.net.URI
 import java.text.SimpleDateFormat
@@ -53,36 +56,40 @@ class ImageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
 
-        if (intent.getStringExtra("status") == "CAMERA"){
-            takePicture()
-        }else{
-            openGallery()
-        }
+        CoroutineScope(Dispatchers.Main).async {
+            CoroutineScope(Dispatchers.IO).async {
+                if (intent.getStringExtra("status") == "CAMERA"){
+                    takePicture()
+                }else{
+                    openGallery()
+                }
+            }.await()
+            backBtn = findViewById(R.id.backButton)
+            cropBtn = findViewById(R.id.cropButton)
+            spinBtn = findViewById(R.id.spinButton)
+            sendBtn = findViewById(R.id.sendButton)
 
-        backBtn = findViewById(R.id.backButton)
-        cropBtn = findViewById(R.id.cropButton)
-        spinBtn = findViewById(R.id.spinButton)
-        sendBtn = findViewById(R.id.sendButton)
 
+            manuscriptPaperWholeImg = findViewById(R.id.manuscriptPaperWholeIMG)
 
-        manuscriptPaperWholeImg = findViewById(R.id.manuscriptPaperWholeIMG)
+            backBtn.setOnClickListener {
+                val mainIntent = Intent(applicationContext, MainActivity::class.java)
+                startActivity(mainIntent)
+                finish()
+            }
 
-        backBtn.setOnClickListener {
-            val mainIntent = Intent(this, MainActivity::class.java)
-            startActivity(mainIntent)
-            finish()
-        }
+            cropBtn.setOnClickListener {
 
-        cropBtn.setOnClickListener {
-            imgURI?.let { it1 -> cropImg(it1) }
-        }
+                imgURI?.let { it1 -> cropImg(it1) }
+            }
 
-        spinBtn.setOnClickListener {
-            spinImg(manuscriptPaperWholeImg.background)
-        }
+            spinBtn.setOnClickListener {
+                spinImg(manuscriptPaperWholeImg.background)
+            }
 
-        sendBtn.setOnClickListener {
-            sendServer(manuscriptPaperWholeImg.background)
+            sendBtn.setOnClickListener {
+                sendServer(manuscriptPaperWholeImg.background)
+            }
         }
     }
 
@@ -175,7 +182,9 @@ class ImageActivity : AppCompatActivity() {
 
         val timeStamp : String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         val storageDir : File? = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"onego_data/original")
-
+        if (!storageDir?.exists()!!){
+            storageDir.mkdirs()
+        }
         return File.createTempFile(
             "${timeStamp}_", /* prefix */
             ".jpg", /* suffix */
