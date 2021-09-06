@@ -5,10 +5,14 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.kakao.sdk.common.util.Utility
+import com.kakao.sdk.user.UserApiClient
 import kobot.board.onego.R
 import kobot.board.onego.adapter.MainAdapter
 import kobot.board.onego.util.FileList
@@ -31,7 +35,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         CoroutineScope(Dispatchers.Main).async {
             CoroutineScope(Dispatchers.IO).async {
