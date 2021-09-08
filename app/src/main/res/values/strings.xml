@@ -4,6 +4,4 @@
     <string name="main_server_url">3.34.215.157:3000</string>
     <string name="model_server_url">3.38.9.213:5000</string>
     <string name="default_web" translatable="false">228056120306-fve7qgq5qp3uiel7hioog5vnfda8ensg.apps.googleusercontent.com</string>
-
-
 </resources>

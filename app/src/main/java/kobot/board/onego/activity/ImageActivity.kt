@@ -7,10 +7,10 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.graphics.drawable.Drawable
-import android.hardware.Camera
 import android.media.ExifInterface
-import android.media.Image
+import android.net.Network
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -21,18 +21,29 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
+import androidx.core.graphics.drawable.toBitmap
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kobot.board.onego.R
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
+import kobot.board.onego.util.NetworkClient
+import kobot.board.onego.util.RetrofitAPI
+import kotlinx.coroutines.*
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.*
-import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.Collections.rotate
 
 class ImageActivity : AppCompatActivity() {
 
@@ -52,6 +63,7 @@ class ImageActivity : AppCompatActivity() {
 
     private lateinit var currentPhotoPath : String
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
@@ -88,7 +100,7 @@ class ImageActivity : AppCompatActivity() {
             }
 
             sendBtn.setOnClickListener {
-                sendServer(manuscriptPaperWholeImg.background)
+                sendServer()
             }
         }
     }
@@ -99,12 +111,60 @@ class ImageActivity : AppCompatActivity() {
         startActivityForResult(intent, OPEN_GALLERY)
     }
 
-    private fun sendServer(background: Drawable?) {
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun sendServer() {
         // send IMG to main server
+        CoroutineScope(Dispatchers.Main).async{
+            CoroutineScope(Dispatchers.IO).async {
+                var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"onego_data/original/before_onego.png")
+                file.createNewFile()
+                var drawable = manuscriptPaperWholeImg.drawable
+                var bitmap = drawable.toBitmap()
+                var auth = FirebaseAuth.getInstance().currentUser
+                var stream = FileOutputStream(file)
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                stream.close()
+                Log.d("로그로그", auth.toString())
+                post2MainServer(file, auth)
+                Log.d("로그로그", "ghghghghghg  ////////////")
 
 
-        finish()
-        startActivity(Intent(this, AfterActivity::class.java))
+            }.await()
+
+            finish()
+            startActivity(Intent(this@ImageActivity, AfterActivity::class.java))
+        }
+
+
+
+    }
+
+    private fun post2MainServer(file: File, auth: FirebaseUser?) {
+        var requestBody : RequestBody = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+        var body : MultipartBody.Part = MultipartBody.Part.createFormData("uploaded_file", file.name, requestBody)
+
+        var uid = RequestBody.create("text/plain".toMediaTypeOrNull(), auth.toString())
+        Log.d("레트로핏 결과2",""+body.toString())
+
+        var retrofit = NetworkClient().getRetrofit("MAIN_SERVER_URL")
+        var server = retrofit.create(RetrofitAPI::class.java)
+
+        server.post_Manuscript_Request(uid, body).enqueue(object : Callback<RequestBody>{
+
+            override fun onResponse(call: Call<RequestBody>, response: Response<RequestBody>) {
+                if (response?.isSuccessful) {
+                    Toast.makeText(getApplicationContext(), "파일 인식 중...", Toast.LENGTH_LONG).show();
+                    Log.d("레트로핏 결과2",""+response?.body().toString())
+                } else {
+                    Toast.makeText(getApplicationContext(), "파일 업로드 에러...", Toast.LENGTH_LONG).show();
+                    Log.d("레트로핏 결과2","허허,,,"+response?.body().toString())
+                }
+            }
+            override fun onFailure(call: Call<RequestBody>, t: Throwable) {
+                Log.d("레트로핏 결과2","실패,,,")
+            }
+
+        })
     }
 
     private fun spinImg(background: Drawable?) {
@@ -181,7 +241,7 @@ class ImageActivity : AppCompatActivity() {
     private fun createImageFile(): File {
 
         val timeStamp : String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val storageDir : File? = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"onego_data/original")
+        val storageDir : File? = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"onego_data/original/")
         if (!storageDir?.exists()!!){
             storageDir.mkdirs()
         }
