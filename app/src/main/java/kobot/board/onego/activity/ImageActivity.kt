@@ -100,7 +100,9 @@ class ImageActivity : AppCompatActivity() {
             }
 
             sendBtn.setOnClickListener {
-                sendServer()
+                // sendServer()
+                startActivity(Intent(this@ImageActivity, AfterActivity::class.java))
+                finish()
             }
         }
     }
