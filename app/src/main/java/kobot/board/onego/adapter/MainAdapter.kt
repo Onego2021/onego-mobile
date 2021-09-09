@@ -23,7 +23,7 @@ class MainAdapter(val context : Context, val fileList : ArrayList<FileList>) : R
         fun bind (file : FileList, context: Context){
             fileName?.text = file.filename
             fileSize?.text = file.size
-            fileTime?.text = file.time
+            fileTime?.text = file.time.toString().substring(0, 10)
         }
     }
 

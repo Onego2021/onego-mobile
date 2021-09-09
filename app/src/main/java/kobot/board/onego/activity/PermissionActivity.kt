@@ -15,7 +15,7 @@ class PermissionActivity : AppCompatActivity() {
 
         TedPermission.with(this).setPermissionListener(object : PermissionListener{
             override fun onPermissionGranted() {
-                startActivity(Intent(this@PermissionActivity, MainActivity::class.java))
+                startActivity(Intent(this@PermissionActivity, LoginActivity::class.java))
                 finish()
             }
 

@@ -1,13 +1,7 @@
 package kobot.board.onego.util
 
-import android.os.Environment
-import java.io.File
+import java.nio.file.attribute.FileTime
 
-class FileList(var filename: String, var time: String, var size: String) {
-    var filePath = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"onego_data/proofread")
-    init {
-        if(!filePath.exists()){
-
-        }
-    }
+class FileList(var filename: String, var time: FileTime?, var size: String) {
+    constructor(filename: String) : this(filename, null, "")
 }
