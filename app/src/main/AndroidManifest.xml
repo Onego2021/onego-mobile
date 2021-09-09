@@ -13,13 +13,17 @@
 
     <application
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:largeHeap="true"
         android:icon="@mipmap/ic_onego"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_onego_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Onego">
+        android:theme="@style/Theme.Onego"
+        android:usesCleartextTraffic="true">
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="e1b0edbf0130606d5308e1c69bb0d871"/>
 
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
@@ -27,7 +31,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.LoginActivity">
 
+        </activity>
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakaoe1b0edbf0130606d5308e1c69bb0d871" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.ImageActivity"></activity>
         <activity android:name=".activity.MainActivity"></activity>
         <activity android:name=".activity.PermissionActivity"></activity>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "228056120306",
+    "project_id": "onego-ade66",
+    "storage_bucket": "onego-ade66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228056120306:android:3f6668a77dbfe4c838896b",
+        "android_client_info": {
+          "package_name": "kobot.board.onego"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228056120306-fve7qgq5qp3uiel7hioog5vnfda8ensg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0AIpMIcRfuKD_YQmSOzXPUdx3wmZqn1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228056120306-fve7qgq5qp3uiel7hioog5vnfda8ensg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
