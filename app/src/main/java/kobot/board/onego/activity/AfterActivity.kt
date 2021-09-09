@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
@@ -45,12 +46,10 @@ class AfterActivity : AppCompatActivity() {
         manuscriptPaperText = requestText()
         // manuscriptPaperImages = requestManuscriptPaper()
 
-        carouselView = findViewById<CarouselView>(R.id.onegoCarousel)
         carouselView.pageCount = manuscriptPaperImages.size
         carouselView.setImageListener(imageListener)
 
         markAdder = findViewById(R.id.markAdder)
-        pdfDownLoader = findViewById(R.id.pdfDownloader)
         txtDownloader = findViewById(R.id.txtDownloader)
         homeLoader = findViewById(R.id.homeLoader)
 
@@ -63,7 +62,7 @@ class AfterActivity : AppCompatActivity() {
         }
 
         txtDownloader.setOnClickListener {
-            downloadImgtoText(manuscriptPaperImages)
+            downloadImgtoText()
         }
 
         homeLoader.setOnClickListener {
@@ -78,7 +77,8 @@ class AfterActivity : AppCompatActivity() {
     }
 
     // Download Manuscript paper Img to txt
-    private fun downloadImgtoText(manuscriptPaperImages: Array<String>) {
+    private fun downloadImgtoText() {
+        Toast.makeText(this, "txt파일이 다운로드되었습니다.", Toast.LENGTH_LONG).show()
     }
 
     // Request ManuscriptPaper txt to server

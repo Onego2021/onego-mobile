@@ -21,3 +21,13 @@ interface RetrofitAPI {
     @GET("/download_txt")
     suspend fun downloadFile(@Query("url") fileUrl:String): Call<String>
 }
+//data class ResponseDC(var result:Stirng? = null)
+//interface RestrofitApi{
+//    @GET("/")
+//    fun getRequest(@Query("name")name:string):Call<ResponseDC>
+//
+//    @FormUrlEncoded
+//    @POST("/")
+//    fun postRequest(@Field("id")id:String,
+//                    @Field("password")password:String):Call<ResponseDC>
+//}

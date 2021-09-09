@@ -125,7 +125,7 @@ class ImageActivity : AppCompatActivity() {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
                 stream.close()
                 Log.d("로그로그", auth.toString())
-                post2MainServer(file, auth)
+                //post2MainServer(file, auth)
                 Log.d("로그로그", "ghghghghghg  ////////////")
 
 
@@ -139,7 +139,7 @@ class ImageActivity : AppCompatActivity() {
 
     }
 
-    private fun post2MainServer(file: File, auth: FirebaseUser?) {
+   /*private fun post2MainServer(file: File, auth: FirebaseUser?) {
         var requestBody : RequestBody = RequestBody.create("image/*".toMediaTypeOrNull(), file)
         var body : MultipartBody.Part = MultipartBody.Part.createFormData("uploaded_file", file.name, requestBody)
 
@@ -149,7 +149,7 @@ class ImageActivity : AppCompatActivity() {
         var retrofit = NetworkClient().getRetrofit("MAIN_SERVER_URL")
         var server = retrofit.create(RetrofitAPI::class.java)
 
-        server.post_Manuscript_Request(uid, body).enqueue(object : Callback<RequestBody>{
+          server.post_Manuscript_Request(uid, body).enqueue(object : Callback<RequestBody>{
 
             override fun onResponse(call: Call<RequestBody>, response: Response<RequestBody>) {
                 if (response?.isSuccessful) {
@@ -166,6 +166,8 @@ class ImageActivity : AppCompatActivity() {
 
         })
     }
+    */
+    */
 
     private fun spinImg(background: Drawable?) {
         // spin Image

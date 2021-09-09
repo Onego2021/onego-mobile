@@ -11,8 +11,6 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.kakao.sdk.common.util.Utility
-import com.kakao.sdk.user.UserApiClient
 import kobot.board.onego.R
 import kobot.board.onego.adapter.MainAdapter
 import kobot.board.onego.util.FileList

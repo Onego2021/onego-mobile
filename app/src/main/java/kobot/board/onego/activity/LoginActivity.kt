@@ -18,11 +18,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.ktx.Firebase
-import com.kakao.auth.ISessionCallback
-import com.kakao.sdk.auth.model.OAuthToken
-import com.kakao.sdk.common.model.AuthErrorCause
-import com.kakao.sdk.user.UserApiClient
-import com.kakao.usermgmt.LoginButton
 import kobot.board.onego.R
 
 class LoginActivity : AppCompatActivity() {

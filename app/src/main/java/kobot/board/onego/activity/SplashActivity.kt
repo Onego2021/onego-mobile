@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import com.kakao.sdk.common.KakaoSdk
 import kobot.board.onego.R
 
 class SplashActivity : AppCompatActivity() {
