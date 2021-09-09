@@ -40,6 +40,11 @@ $ git clone https://github.com/Onego2021/onego-mobile.git
 <br>
 
 ## 스크린샷
+![KakaoTalk_20210909_224450020_02](https://user-images.githubusercontent.com/28584299/132697829-f87a4de1-e47e-4fa5-9fab-e5a4d9c4654f.jpg)
+![KakaoTalk_20210909_224708749](https://user-images.githubusercontent.com/28584299/132697840-f49d2583-a203-4bba-ab8e-3fed477a8e9b.jpg)
+![KakaoTalk_20210909_224450020_04](https://user-images.githubusercontent.com/28584299/132697837-f3432b02-b3c2-492e-81c2-197f8b47cee2.jpg)
+![KakaoTalk_20210909_224450020_03](https://user-images.githubusercontent.com/28584299/132697833-f88784a0-5fc0-46e2-8d02-0db39fe37351.jpg)
+
 
 <br>
 
